@@ -31,12 +31,13 @@ const AddRoom = () => {
         setImagePreview(URL.createObjectURL(selectedImage))
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try{
             const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
             if(success !== undefined){
-                setsuccessMessage("Room added successfully")
+                setsuccessMessage("Room added successfully !")
+                
                 setNewRoom({
                     photo : null,
                     roomType : "",
@@ -50,6 +51,10 @@ const AddRoom = () => {
         }catch(error){
             setErrorMessage(error.message)
         }
+        setTimeout(() => {
+            setsuccessMessage("")
+            setErrorMessage("")
+        }, 3000)
     }
 
     return (
@@ -58,7 +63,12 @@ const AddRoom = () => {
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-lg-g">
                         <h2 className="mt-5 mb-2">Add a New Room</h2>
-
+                        {
+                            	successMessage && (<div className="alert alert-success fade show"> {successMessage} </div>)
+                        }
+                        {
+                            	errorMessage && (<div className="alert alert-alert fade show"> {errorMessage} </div>)
+                        }
                         <form onSubmit={handleSubmit}>
 
                             <div className="mb-3">

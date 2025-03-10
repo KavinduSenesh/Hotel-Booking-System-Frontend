@@ -73,7 +73,7 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
                     }
                 </div>
             )}
-            <style jsx>
+            <style>
                 {
                 `
                 .custom-button{
