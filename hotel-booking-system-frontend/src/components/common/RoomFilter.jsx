@@ -6,10 +6,10 @@ const RoomFilter = ({data, setFilteredData}) => {
     const handleSelectChange = (e) => {
         const selectedRoomType = e.target.value
         setFilter(selectedRoomType)
-        const filteredRooms = data.filter((room) => 
+        const filteredRooms = data.filter((room) =>
             room.roomType.toLowerCase()
             .includes(selectedRoomType.toLowerCase()))
-            setFilteredData(filteredRooms) 
+            setFilteredData(filteredRooms)
     }
 
     const clearFilter = () => {
@@ -39,13 +39,24 @@ const RoomFilter = ({data, setFilteredData}) => {
                     ))
                 }
             </select>
-            <button 
-                className="btn btn-hotel" 
-                type="button" 
+            <button
+                className="btn btn-hotel custom-button"
+                type="button"
                 onClick={clearFilter}
-            > 
+            >
                 Clear Filter
             </button>
+            <style>
+                {
+                `
+                    .custom-button {
+                        background-color:rgb(128, 36, 36);
+                        color: white;
+                        border: none;
+                    }
+                `
+                }   
+            </style>
         </div>
     )
 }

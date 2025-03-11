@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllRooms } from "../utils/ApiFunctions";
-import { RoomFilter } from "../common/RoomFilter";
-import { RoomPaginator } from "../common/RoomPaginator";
+import RoomFilter from "../common/RoomFilter";
+import RoomPaginator from "../common/RoomPaginator.jsx";
+import {Col} from "react-bootstrap";
 
 const ExistingRooms = () => {
     const [rooms, setRooms] = useState([]);
@@ -9,10 +10,10 @@ const ExistingRooms = () => {
     const [roomsPerPage, setRoomsPerPage] = useState(8);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredRooms, setFilteredRooms] = useState([]);
-    const [selectedRoomType, setselectedRoomType] = useState("");
+    const [selectedRoomType, setSelectedRoomType] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    
+
     useEffect(() => {
         fetchRooms();
     }, []);
@@ -34,7 +35,7 @@ const ExistingRooms = () => {
         }else{
             const filtered = rooms.filter((room) =>
                 room.roomType === selectedRoomType
-            ) 
+            )
             setFilteredRooms(filtered);
         }
         setCurrentPage(1);
@@ -64,7 +65,7 @@ const ExistingRooms = () => {
                         <h2>Existing Rooms</h2>
                     </div>
                     <Col md={6} className="mb-3 mb-md-0">
-                        <RoomFilter data={rooms} setFilterData={setFilteredRooms}/>
+                        <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
                     </Col>
 
                     <table className="table table-bordered table-hover">
@@ -89,10 +90,10 @@ const ExistingRooms = () => {
                                     </td>
                                 </tr>
                             ))
-                           } 
+                           }
                         </tbody>
                     </table>
-                    <RoomPaginator 
+                    <RoomPaginator
                         currentPage={currentPage}
                         totalPages={calculateTotolPages(filteredRooms, roomsPerPage, rooms)}
                         onPageChange={handlePaginationClick}
@@ -104,3 +105,5 @@ const ExistingRooms = () => {
         </>
     )
 }
+
+export default ExistingRooms;
