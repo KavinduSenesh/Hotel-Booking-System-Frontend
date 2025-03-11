@@ -26,14 +26,15 @@ const RoomFilter = ({data, setFilteredData}) => {
             </span>
             <select
                 className="form-select"
+                aria-label="room type filter"
                 value={filter}
                 onChange={handleSelectChange}
             >
                 <option value={""}> Select a room type to filter </option>
                 {
                     roomTypes.map((type, index) => (
-                        <option key={index} value={type}>
-                              {type}
+                        <option key={index} value={String(type)}>
+                              {String(type)}
                         </option>
                     ))
                 }
