@@ -25,7 +25,7 @@ export async function getRoomTypes(){
         const response = await api.get("/rooms/get/room-types")
         return response.data
     }catch(error){
-        throw new Error("Error while fetching room types")
+        throw new Error(`Error while fetching room types ${error}`)
     }
 }
 
@@ -35,6 +35,17 @@ export async function getAllRooms(){
         const result = await api.get("/rooms/get/all-rooms")
         return result.data
     }catch(error){
-        throw new Error("Error while fetching rooms")
+        throw new Error(`Error while fetching rooms ${error}`)
     }
 }
+
+// deletes a room from the database
+export async function deleteRoom(roomId){
+    try{
+        const result = await api.delete(`/rooms/delete/room/${roomId}`)
+        return result.data
+    }catch(error){
+        throw new Error(`Error while deleting the room ${error}`)
+    }
+}
+
