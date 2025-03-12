@@ -9,7 +9,7 @@ const AddRoom = () => {
         roomPrice : ""
     })
     const [imagePreview, setImagePreview] = useState("")
-    const [successMessage, setsuccessMessage] = useState("")
+    const [successMessage, setSuccessMessage] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
     const handleRoomInputChange = (e) => {
@@ -36,8 +36,8 @@ const AddRoom = () => {
         try{
             const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
             if(success !== undefined){
-                setsuccessMessage("Room added successfully !")
-                
+                setSuccessMessage("Room added successfully !")
+
                 setNewRoom({
                     photo : null,
                     roomType : "",
@@ -52,7 +52,7 @@ const AddRoom = () => {
             setErrorMessage(error.message)
         }
         setTimeout(() => {
-            setsuccessMessage("")
+            setSuccessMessage("")
             setErrorMessage("")
         }, 3000)
     }
@@ -76,9 +76,9 @@ const AddRoom = () => {
                                     Room Type
                                 </label>
                                 <div>
-                                    <RoomTypeSelector 
-                                        handleRoomInputChange={handleRoomInputChange} 
-                                        newRoom={newRoom}   
+                                    <RoomTypeSelector
+                                        handleRoomInputChange={handleRoomInputChange}
+                                        newRoom={newRoom}
                                     />
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ const AddRoom = () => {
                                     name="roomPrice"
                                     value={newRoom.roomPrice}
                                     onChange={handleRoomInputChange}
-                                />      
+                                />
                             </div>
 
                             <div className="mb-3">
@@ -110,7 +110,7 @@ const AddRoom = () => {
                                     onChange={handleImageChange}
                                 />
                                 {imagePreview && (
-                                    <img 
+                                    <img
                                         src={imagePreview}
                                         alt="Preview Image"
                                         style={{maxWidth: "400px", maxHeight: "400px"}}
