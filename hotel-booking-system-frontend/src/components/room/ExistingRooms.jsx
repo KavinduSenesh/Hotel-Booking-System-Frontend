@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { deleteRoom, getAllRooms } from "../utils/ApiFunctions";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator.jsx";
-import {Col} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import {FaEdit, FaEye, FaPlus, FaTrashAlt} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
@@ -91,14 +91,19 @@ const ExistingRooms = () => {
                     }
                     <div className="d-flex justify-content-between mb-3 mt-5">
                         <h2>Existing Rooms</h2>
-                        <Link to={"/add-room"}>
-                            <FaPlus/> Add New Room
-                        </Link>
                     </div>
+
+                    <Row>
                     <Col md={6} className="mb-3 mb-md-0">
                         <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
                     </Col>
 
+                    <Col md={6} className={"d-flex justify-content-end"}>
+                        <Link to={"/add-room"}>
+                            <FaPlus/> Add New Room
+                        </Link>
+                    </Col>
+                    </Row>
                     <table className="table table-bordered table-hover">
                         <thead>
                             <tr className="table-center">
@@ -115,8 +120,8 @@ const ExistingRooms = () => {
                                     <td>{room.id}</td>
                                     <td>{room.roomType}</td>
                                     <td>{room.roomPrice}</td>
-                                    <td className="gap-2"></td>
-                                    <td>
+                                    {/*<td className="gap-2"></td>*/}
+                                    <td className={"gap-2"}>
                                         <Link to={`/edit-rooms/${room.id}`}>
                                             <span className={"btn btn-info"}> <FaEye/> </span>
                                             <span className={"btn btn-warning"}> <FaEdit/> </span>

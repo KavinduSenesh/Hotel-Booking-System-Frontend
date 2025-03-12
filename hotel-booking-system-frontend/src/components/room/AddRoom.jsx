@@ -122,7 +122,7 @@ const AddRoom = () => {
 
                             <div className="d-grid d-flex mt-2">
                                 <Link to={"/existing-rooms"} className="btn btn-outline-info">
-                                    Back to Existing Rooms
+                                    Back
                                 </Link>
                                 <button className="btn btn-outline-primary ml-5">
                                     Save Room
