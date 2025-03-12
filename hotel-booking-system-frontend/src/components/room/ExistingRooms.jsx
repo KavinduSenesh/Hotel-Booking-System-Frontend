@@ -3,7 +3,7 @@ import { deleteRoom, getAllRooms } from "../utils/ApiFunctions";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator.jsx";
 import {Col} from "react-bootstrap";
-import {FaEdit, FaEye, FaTrashAlt} from "react-icons/fa";
+import {FaEdit, FaEye, FaPlus, FaTrashAlt} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
 const ExistingRooms = () => {
@@ -52,17 +52,19 @@ const ExistingRooms = () => {
             const result = await deleteRoom(roomId)
             if(result === ""){
                 setSuccessMessage(`Room No ${roomId} was deleted`)
-                fetchRooms()
+                setTimeout(() => {
+                    setSuccessMessage("");
+                }, 3000); // Clear success message after 3 seconds
+                fetchRooms();
             }else{
                 console.error(`Error deleting room : ${result.message}`)
             }
         }catch(error){
             setErrorMessage(error.message)
+            setTimeout(() => {
+                setErrorMessage("")
+            }, 3000)
         }
-        setTimeout(() => {
-            setSuccessMessage("")
-            setErrorMessage("")
-        }, 3000)
     }
 
     const calculateTotalPages = (filteredRooms, roomsPerPage, rooms) => {
@@ -81,8 +83,17 @@ const ExistingRooms = () => {
         ) : (
             <>
                 <section className="mt-5 mb-5 container">
-                    <div className="d-flex justify-content-center mb-3 mt-5">
+                    {
+                        successMessage && (<div className={"alert alert-success fade show"}> {successMessage} </div>)
+                    }
+                    {
+                        errorMessage && (<div className={"alert alert-danger fade show"}> {errorMessage} </div>)
+                    }
+                    <div className="d-flex justify-content-between mb-3 mt-5">
                         <h2>Existing Rooms</h2>
+                        <Link to={"/add-room"}>
+                            <FaPlus/> Add New Room
+                        </Link>
                     </div>
                     <Col md={6} className="mb-3 mb-md-0">
                         <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />

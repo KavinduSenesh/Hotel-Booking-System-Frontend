@@ -64,7 +64,7 @@ const EditRoom = () => {
             <section className="container mt-5 mb-5">
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-lg-g">
-                        <h2 className="mt-5 mb-2">Add a New Room</h2>
+                        <h2 className="mt-5 mb-2">Update Room</h2>
                         {
                             successMessage && (<div className="alert alert-success fade show"> {successMessage} </div>)
                         }
