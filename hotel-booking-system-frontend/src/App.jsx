@@ -13,6 +13,7 @@ import { createPopper } from "@popperjs/core";
 import Footer from "./components/layout/Footer.jsx";
 window.Popper = { createPopper };
 import "./index.css"
+import RoomListing from "./components/room/RoomListing.jsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                   <Route path={"/edit-rooms/:roomId"} element={<EditRoom />} />
                   <Route path={"/existing-rooms"} element={<ExistingRooms />} />
                   <Route path={"/add-room"} element={<AddRoom />} />
+                  <Route path={"/browse-all-rooms"} element={<RoomListing />} />
               </Routes>
           </Router>
           <Footer/>

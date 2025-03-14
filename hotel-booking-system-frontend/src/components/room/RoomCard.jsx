@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Col} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 
 const RoomCard = ({room}) => {
     return (
@@ -23,7 +23,7 @@ const RoomCard = ({room}) => {
                     </div>
                     <div className={"flex-shrink-0 mt-3"}>
                         <Link to={`bookings/${room.id}`} className={"btn btn-hotel btn-sm"}>
-                            Book Now
+                            View/Book Now
                         </Link>
                     </div>
                 </Card.Body>
