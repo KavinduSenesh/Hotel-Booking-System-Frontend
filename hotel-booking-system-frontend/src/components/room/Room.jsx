@@ -63,7 +63,7 @@ const Room = () => {
                     <RoomPaginator
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        handlePageChange={handlePageChange}
+                        onPageChange={handlePageChange}
                     />
                 </Col>
             </Row>

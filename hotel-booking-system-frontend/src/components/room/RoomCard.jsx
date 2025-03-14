@@ -11,7 +11,7 @@ const RoomCard = ({room}) => {
                     <div className={"flex-shrink-0 mr-3 mb-3 mb-md-0"}>
                         <Card.Img
                             variant={"top"}
-                            src={`data:image/png;base64, ${room.photo}`}
+                            src={room.photo ? `data:image/png;base64, ${room.photo}` : "/default-room.png"}
                             alt={"room photo"}
                             style={{width:'100%', maxWidth: "200px", height:'auto'}}
                         />
