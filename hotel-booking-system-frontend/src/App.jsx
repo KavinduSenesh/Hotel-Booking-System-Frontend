@@ -12,6 +12,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { createPopper } from "@popperjs/core";
 import Footer from "./components/layout/Footer.jsx";
 window.Popper = { createPopper };
+import "./index.css"
 
 
 function App() {
