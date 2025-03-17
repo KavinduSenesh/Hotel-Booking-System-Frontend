@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {bookRoom, getRoomById} from "../utils/ApiFunctions.js";
 import {useNavigate, useParams} from "react-router-dom";
 import moment from "moment/moment.js";
+import {Form, FormGroup} from "react-bootstrap";
 
 const BookingForm = () => {
     const [isValidated, setIsValidated] = useState(false)
@@ -88,14 +89,27 @@ const BookingForm = () => {
             navigate("/", {state:{message : confirmationCode}})
         }catch (error){
             setErrorMessage(error.message)
-            navigate("/", {state: {error: errorMessage}})
+            navigate("/", {state: {error: error.message}})
         }
     }
 
     return (
-        <div>
+        <>
+            <div className={"container mb-5"}>
+                <div className={"row"}>
+                    <div className={"col-md-6"}>
+                        <div className={"card card-body mt-5"}>
+                            <h4 className={"card card-title"}>Reserve Room</h4>
+                            <Form noValidate validated={isValidated} onSubmit={handleSubmit}>
+                                <Form.Group>
 
-        </div>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 
