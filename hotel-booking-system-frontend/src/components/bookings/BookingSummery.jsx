@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 
 const BookingSummery = ({booking, payment, isFormValid, onConfirm}) => {
-    const checkInDate = moment(booking.checkInData)
+    const checkInDate = moment(booking.checkInDate)
     const checkOutDate = moment(booking.checkOutDate)
     const numOfDays = checkOutDate.diff(checkInDate, "days")
     const [isBookingConfirmed, setIsBookingConfirmed] = useState(false)
@@ -34,7 +34,7 @@ const BookingSummery = ({booking, payment, isFormValid, onConfirm}) => {
             <p>FullName: <strong>{booking.guestName}</strong></p>
             <p>Email: <strong>{booking.guestEmail}</strong></p>
             <p>Check In Date: <strong>{moment(booking.checkInData).format("MMM Do YYYY")}</strong></p>
-            <p>Check Out Date: <strong>{moment(booking.checkOutDate).format("MM Do YYYY")}</strong></p>
+            <p>Check Out Date: <strong>{moment(booking.checkOutDate).format("MMM Do YYYY")}</strong></p>
             <p>Number of Days: <strong>{numOfDays}</strong></p>
 
             <div>
