@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {getAllRooms} from "../utils/ApiFunctions.js";
 import {Link} from "react-router-dom";
 import {Card, Carousel, Col, Container, Row} from "react-bootstrap";
+import "../utils/css/RoomCarousel.css";
 
 const RoomCarousel = () => {
     const [rooms, setRooms] = useState([{id: "", roomType: "", roomPrice: "", photo: ""}]);
@@ -33,8 +34,12 @@ const RoomCarousel = () => {
                 Browse all rooms
             </Link>
 
-            <Container>
-                <Carousel indicators={false}>
+            <Container className={"position-relative"}>
+                <Carousel
+                    indicators={false}
+                    prevIcon={<span className="carousel-control-prev-icon custom-carousel-control" />}
+                    nextIcon={<span className="carousel-control-next-icon custom-carousel-control" />}
+                >
                     {[...Array(Math.ceil(rooms.length / 4))]
                         .map((_, index) => (
                             <Carousel.Item key={index}>
@@ -51,17 +56,16 @@ const RoomCarousel = () => {
                                                             className={"w-100"}
                                                             style = {{height: "200px"}}
                                                         />
-                                                        <Card.Body>
-                                                            <Card.Title className={"hotel-color"}>{room.roomType}</Card.Title>
-                                                            <Card.Title className={"room-price"}>${room.roomPrice}/night</Card.Title>
-
-                                                        </Card.Body>
                                                     </Link>
-                                                    <div className={"flex-shrink-0"}>
-                                                        <Link to={`book-room/${room.id}`} className={"btn btn-hotel btn-sm"}>
-                                                            Book Now
-                                                        </Link>
-                                                    </div>
+                                                    <Card.Body>
+                                                        <Card.Title className={"hotel-color"}>{room.roomType}</Card.Title>
+                                                        <Card.Title className={"room-price"}>${room.roomPrice}/night</Card.Title>
+                                                        <div className={"flex-shrink-0"}>
+                                                            <Link to={`/book-room/${room.id}`} className={"btn btn-hotel btn-sm"}>
+                                                                Book Now
+                                                            </Link>
+                                                        </div>
+                                                    </Card.Body>
                                                 </Card>
                                             </Col>
                                         ))
