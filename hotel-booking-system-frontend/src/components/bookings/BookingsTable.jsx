@@ -6,6 +6,8 @@ const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
     const[filteredBookings, setFilteredBookings] = useState(bookingInfo);
 
     const filterBookings = (startDate, endDate) => {
+        // console.log("filteredBookings", startDate, endDate)
+
         let filtered = bookingInfo
         if (startDate && endDate) {
             filtered = bookingInfo.filter((booking) => {
@@ -26,7 +28,7 @@ const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
     return (
         <section className={"p-4"}>
             <DateSlider onDateChange={filterBookings} onFilterChange={filterBookings}/>
-            <table>
+            <table className={"table table-bordered table-hover shadow"}>
                 <thead>
                     <tr>
                         <th>S/N</th>
@@ -46,11 +48,14 @@ const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
                 </thead>
 
                 <tbody className={"text-center"}>
-                {filterBookings.map((booking, index) => (
+                {filteredBookings.map((booking, index) => {
+                    console.log("Booking Data:", booking); // Debugging
+
+                    return(
                     <tr key={booking.id}>
                         <td>{index + 1}</td>
                         <td>{booking.id}</td>
-                        <td>{booking.room.id}</td>
+                        <td>{booking.roomResponse?.id || "N/A"}</td>
                         <td>{booking.checkInDate}</td>
                         <td>{booking.checkOutDate}</td>
                         <td>{booking.guestFullName}</td>
@@ -68,7 +73,8 @@ const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
                             </button>
                         </td>
                     </tr>
-                ))}
+                )
+                })}
                 </tbody>
             </table>
             {filterBookings.length === 0 && <p> No booking found for the selected dates </p>}

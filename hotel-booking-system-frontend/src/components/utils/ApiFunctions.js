@@ -42,7 +42,7 @@ export async function getAllRooms(){
 // deletes a room from the database
 export async function deleteRoom(roomId){
     try{
-        const result = await api.delete(`/rooms/delete/room/ ${roomId}`)
+        const result = await api.delete(`/rooms/delete/room/${roomId}`)
         return result.data
     }catch(error){
         throw new Error(`Error while deleting the room ${error}`)
@@ -86,7 +86,8 @@ export async function bookRoom(roomId, booking){
 // gets all bookings from the database
 export async function getAllBookings(){
     try {
-        const result = await api.get("/get/all-bookings")
+        const result = await api.get("/bookings/get/all-bookings")
+        console.log("Bookings : ", result.data)
         return result.data
     }catch (error){
         throw new Error(`Error while fetching bookings ${error}`)
@@ -96,7 +97,7 @@ export async function getAllBookings(){
 // get bookings by confirmation code
 export async function getBookingByConfirmationCode(confirmationCode){
     try{
-        const result = await api.get(`/get/confirmation/${confirmationCode}`)
+        const result = await api.get(`/bookings/get/confirmation/${confirmationCode}`)
         return result.data
     }catch (error){
         if (error.response && error.response.data){
