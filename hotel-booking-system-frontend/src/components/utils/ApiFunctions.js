@@ -111,7 +111,7 @@ export async function getBookingByConfirmationCode(confirmationCode){
 // deletes a booking from the database
 export async function cancelBooking(bookingId){
     try{
-        const result = await api.delete(`/delete/booking/${bookingId}`)
+        const result = await api.delete(`bookings/delete/booking/${bookingId}`)
         return result.data
     }catch (error){
         throw new Error(`Error while deleting booking ${error.message}`)
