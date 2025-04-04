@@ -122,7 +122,7 @@ export async function cancelBooking(bookingId){
 export async function getAvailableRooms(checkInDate, checkOutDate, roomType){
     try{
         const result = await api.get(`rooms/get/available-rooms?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomType=${roomType}`)
-        return result.data
+        return result
     }catch (error){
         throw new Error(`Error while fetching rooms ${error}`)
     }

@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {Button, Row} from "react-bootstrap";
-import room from "../room/Room.jsx";
 import RoomCard from "../room/RoomCard.jsx";
 import RoomPaginator from "./RoomPaginator.jsx";
 
 const RoomSearchResults = ({results, onClearSearch}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const resultPerPage = 3
-    const totalResults = results.length()
+    const totalResults = results.length
     const totalPages = Math.ceil(totalResults / resultPerPage)
 
     const handlePageChange = (pageNumber) => {
@@ -40,7 +39,7 @@ const RoomSearchResults = ({results, onClearSearch}) => {
                            />
                        )}
                        <Button
-                           varient={"secondary"}
+                           variant="secondary"
                             onClick={onClearSearch}
                        >
                             Clear Search
@@ -48,7 +47,7 @@ const RoomSearchResults = ({results, onClearSearch}) => {
                    </Row>
                </>
             ) : (
-                <p></p>
+                <p className="text-center text-danger mt-5">No rooms found for the selected filters.</p>
             )}
         </>
     );
