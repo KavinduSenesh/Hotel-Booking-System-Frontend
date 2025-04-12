@@ -4,6 +4,15 @@ export const api = axios.create({
     baseURL :"http://localhost:9192/api/v1"
 })
 
+// get header
+export const getHeader = () => {
+    const token = localStorage.getItem("token");
+    return{
+        Authorization : `Bearer ${token}`,
+        "Content-Type" : "application/json"
+    }
+}
+
 // adds a new room to the database
 export async function addRoom(photo, roomType, roomPrice){
     const formData = new FormData();
@@ -111,7 +120,7 @@ export async function getBookingByConfirmationCode(confirmationCode){
 // deletes a booking from the database
 export async function cancelBooking(bookingId){
     try{
-        const result = await api.delete(`bookings/delete/booking/${bookingId}`)
+        const result = await api.delete(`/bookings/delete/booking/${bookingId}`)
         return result.data
     }catch (error){
         throw new Error(`Error while deleting booking ${error.message}`)
@@ -121,15 +130,52 @@ export async function cancelBooking(bookingId){
 // gets all available rooms
 export async function getAvailableRooms(checkInDate, checkOutDate, roomType){
     try{
-        const result = await api.get(`rooms/get/available-rooms?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomType=${roomType}`)
+        const result = await api.get(`/rooms/get/available-rooms?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomType=${roomType}`)
         return result
     }catch (error){
         throw new Error(`Error while fetching rooms ${error}`)
     }
 }
 
+// register a new user
+export async function registration(registrationData){
+    try {
+        const response = await api.post("auth/register", registrationData)
+        return response.data
+    }catch (error){
+        if (error.response && error.response.data){
+            throw new Error(error.response.data)
+        }else {
+            throw new Error(`Error while fetching booking : ${error.message}`)
+        }
+    }
+}
 
+// login a user
+export async function loginUser(loginData){
+    try {
+        const response = await api.post("/auth/login", loginData)
+        if (response.status >= 200 && response.status < 300){
+            return response.data
+        }else{
+            return null
+        }
+    }catch (error){
+        console.error(`Error while fetching login user ${error}`)
+        return null
+    }
+}
 
+export async function getUserProfile(userId, token){
+    try {
+        const response = await api.get(`/user/profile/${userId}`,{
+           headers: getHeader()
+        })
+        return response.data
+    }catch (error){
+        throw new Error(`Error while fetching user profile ${error}`)
+    }
+}
 
 
 
