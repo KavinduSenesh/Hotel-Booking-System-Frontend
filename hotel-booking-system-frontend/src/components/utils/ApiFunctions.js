@@ -138,7 +138,7 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType){
 }
 
 // register a new user
-export async function registration(registrationData){
+export async function registerUser(registrationData){
     try {
         const response = await api.post("auth/register", registrationData)
         return response.data
@@ -166,6 +166,7 @@ export async function loginUser(loginData){
     }
 }
 
+// get user profile
 export async function getUserProfile(userId, token){
     try {
         const response = await api.get(`/user/profile/${userId}`,{
@@ -176,6 +177,18 @@ export async function getUserProfile(userId, token){
         throw new Error(`Error while fetching user profile ${error}`)
     }
 }
+
+export async function deleteUser(userId){
+    try{
+        const response = await api.delete(`/user/delete/${userId}`,{
+            headers: getHeader()
+        })
+        return response.data
+    }catch (error){
+        return error.message
+    }
+}
+
 
 
 
