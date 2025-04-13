@@ -169,7 +169,7 @@ export async function loginUser(loginData){
 // get user profile
 export async function getUserProfile(userId, token){
     try {
-        const response = await api.get(`/user/profile/${userId}`,{
+        const response = await api.get(`/user/get/${userId}`,{
            headers: getHeader()
         })
         return response.data
@@ -178,6 +178,7 @@ export async function getUserProfile(userId, token){
     }
 }
 
+// delete a user
 export async function deleteUser(userId){
     try{
         const response = await api.delete(`/user/delete/${userId}`,{
@@ -189,7 +190,30 @@ export async function deleteUser(userId){
     }
 }
 
+// get user by id
+export async function getUser(userId, token){
+    try {
+        const response = await api.get(`/user/get/${userId}`,{
+            headers: getHeader()
+        })
+        return response.data
+    }catch (error){
+        throw new Error(`Error while fetching user ${error}`)
+    }
+}
 
+// get bookings by user id
+export async function getBookingsByUserId(userId, token){
+    try{
+        const response = await api.get(`/get/user/${userId}`,{
+            headers: getHeader()
+        })
+        return response.data
+    }catch (error){
+        console.error(`Error while fetching user ${error}`)
+        throw new Error(`Failed to fetch bookings`)
+    }
+}
 
 
 
