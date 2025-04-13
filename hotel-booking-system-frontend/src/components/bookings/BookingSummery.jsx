@@ -31,19 +31,19 @@ const BookingSummery = ({booking, payment, isFormValid, onConfirm}) => {
         <div className={"card card-body mt-5"}>
             <h4>Reservation Summery</h4>
 
-            <p>FullName: <strong>{booking.guestName}</strong></p>
+            <p>FullName: <strong>{booking.guestFullName}</strong></p>
             <p>Email: <strong>{booking.guestEmail}</strong></p>
-            <p>Check In Date: <strong>{moment(booking.checkInData).format("MMM Do YYYY")}</strong></p>
+            <p>Check In Date: <strong>{moment(booking.checkInDate).format("MMM Do YYYY")}</strong></p>
             <p>Check Out Date: <strong>{moment(booking.checkOutDate).format("MMM Do YYYY")}</strong></p>
             <p>Number of Days: <strong>{numOfDays}</strong></p>
 
             <div>
                 <h5>Number of Guests</h5>
                 <strong>
-                    Adult{booking.numberOfAdults > 1 ? "s" : ""} : {booking.numberOfAdults}
+                    Adult{booking.numOfAdults > 1 ? "s" : ""} : {booking.numOfAdults}
                 </strong>
-                <strong>
-                    Children : {booking.numberOfChildren}
+                <strong className={"px-4"}>
+                    Children : {booking.numOfChildren}
                 </strong>
             </div>
             {payment > 0 ? (

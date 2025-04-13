@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {parseISO} from "date-fns";
 import DateSlider from "../common/DateSlider.jsx";
+import moment from "moment/moment.js";
 
 const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
     const[filteredBookings, setFilteredBookings] = useState(bookingInfo);
@@ -57,8 +58,8 @@ const BookingsTable = ({bookingInfo, handleBookingCancellation}) => {
                         <td>{booking.id}</td>
                         <td>{booking.roomResponse?.id || "N/A"}</td>
                         <td>{booking.roomResponse?.roomType || "N/A"}</td>
-                        <td>{booking.checkInDate}</td>
-                        <td>{booking.checkOutDate}</td>
+                        <td>{moment(booking.checkInDate).format("MMM Do YYYY")}</td>
+                        <td>{moment(booking.checkInDate).format("MMM Do YYYY")}</td>
                         <td>{booking.guestFullName}</td>
                         <td>{booking.guestEmail}</td>
                         <td>{booking.numOfAdults}</td>

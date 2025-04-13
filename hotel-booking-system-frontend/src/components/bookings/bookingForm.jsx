@@ -10,13 +10,16 @@ const BookingForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [roomPrice, setRoomPrice] = useState(0)
+
+    const currentUser = localStorage.getItem("userId")
+
     const [booking, setBooking] = useState({
         guestFullName: "",
-        guestEmail: "",
+        guestEmail: currentUser,
         checkInDate: "",
         checkOutDate: "",
-        numOfAdults: "",
-        numOfChildren: "",
+        numOfAdults: 1,
+        numOfChildren: 0,
     })
 
     const [roomInfo, setRoomInfo] = useState({
@@ -212,7 +215,6 @@ const BookingForm = () => {
                                                 Children :
                                             </Form.Label>
                                             <FormControl
-                                                required
                                                 type={"number"}
                                                 id={"numOfChildren"}
                                                 name={"numOfChildren"}
