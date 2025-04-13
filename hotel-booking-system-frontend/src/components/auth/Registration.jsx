@@ -81,7 +81,7 @@ const Registration = () => {
                         <input
                             id={"email"}
                             name={"email"}
-                            type={"text"}
+                            type={"email"}
                             className={"form-control"}
                             value={registration.email}
                             onChange={handleInputChange}
@@ -97,7 +97,7 @@ const Registration = () => {
                         <input
                             id={"password"}
                             name={"password"}
-                            type={"text"}
+                            type={"password"}
                             className={"form-control"}
                             value={registration.password}
                             onChange={handleInputChange}

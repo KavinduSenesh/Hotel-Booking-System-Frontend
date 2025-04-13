@@ -12,19 +12,24 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { createPopper } from "@popperjs/core";
 import Footer from "./components/layout/Footer.jsx";
 window.Popper = { createPopper };
-import "./index.css"
+// import "./index.css"
+import "./app.css/"
 import RoomListing from "./components/room/RoomListing.jsx";
 import Admin from "./components/admin/Admin.jsx";
 import Checkout from "./components/bookings/Checkout.jsx";
 import BookingSuccess from "./components/bookings/BookingSuccess.jsx";
 import Bookings from "./components/bookings/Bookings.jsx";
 import FindBooking from "./components/bookings/FindBooking.jsx";
+import Login from "./components/auth/Login.jsx";
+import Registration from "./components/auth/Registration.jsx";
+import Profile from "./components/auth/Profile.jsx";
+import AuthProvider from "./components/auth/AuthProvider.jsx";
 
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
       <main>
           <Router>
               <Navbar/>
@@ -39,11 +44,15 @@ function App() {
                   <Route path={"/booking-success"} element={<BookingSuccess/>} />
                   <Route path={"/existing-bookings"} element={<Bookings/>} />
                   <Route path={"/find-booking"} element={<FindBooking/>} />
+                  <Route path={"/login"} element={<Login/>} />
+                  <Route path={"/register"} element={<Registration/>} />
+                  <Route path={"/profile"} element={<Profile/>} />
+                  <Route path={"/logout"} element={<Profile/>} />
               </Routes>
           </Router>
           <Footer/>
       </main>
-    </>
+    </AuthProvider>
   )
 }
 

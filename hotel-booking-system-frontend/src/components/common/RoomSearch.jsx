@@ -15,9 +15,13 @@ const RoomSearch = () => {
     const [errorMessage, setErrorMessage] = useState("")
     const [availableRooms, setAvailableRooms] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [hasSearched, setHasSearched] = useState(false);
+
 
     const handleSearch = (e) => {
+        setHasSearched(true);
         e.preventDefault();
+
         const checkIn = moment(searchQuery.checkInDate)
         const checkOut = moment(searchQuery.checkOutDate)
 
@@ -70,6 +74,7 @@ const RoomSearch = () => {
             roomType: "",
         })
         setAvailableRooms([])
+        setHasSearched(false)
     }
 
     console.log("Rendering RoomSearchResults with data:", availableRooms);
@@ -129,20 +134,22 @@ const RoomSearch = () => {
                     </Row>
                 </Form>
 
-                {isLoading ? (
-                    <p className={"mt-4"}>finding available rooms...</p>
-                ) : Array.isArray(availableRooms) && availableRooms.length > 0 ? (
-                    <RoomSearchResults
-                        results={availableRooms}
-                        onClearSearch={ClearSearch}
-                    />
-                ) : (
-                    <p className={"text-danger text-center mt-5"}>
-                        No rooms available for the selected dates
-                    </p>
-                )}
 
-                {errorMessage && (
+                {hasSearched && (
+                    isLoading ? (
+                        <p className={"mt-4"}>finding available rooms...</p>
+                    ) : Array.isArray(availableRooms) && availableRooms.length > 0 ? (
+                        <RoomSearchResults
+                            results={availableRooms}
+                            onClearSearch={ClearSearch}
+                        />
+                    ) : (
+                        <p className={"text-danger text-center mt-5"}>
+                            No rooms available for the selected dates
+                        </p>
+                        )
+                )}
+                {hasSearched && errorMessage && (
                     <p className={"text-danger"}>{errorMessage}</p>
                 )}
             </Container>
