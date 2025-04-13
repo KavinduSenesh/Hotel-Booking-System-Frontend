@@ -1,7 +1,7 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {loginUser} from "../utils/ApiFunctions.js";
-import {jwtDecode} from "jwt-decode";
+import AuthProvider, {AuthContext} from "./AuthProvider.jsx";
 
 const Login = () => {
     const [errorMessage, setErrorMessage] = useState("")
@@ -12,20 +12,22 @@ const Login = () => {
 
     const navigate = useNavigate()
 
+    const { handleLogin } = useContext(AuthContext)
+
     const handleInputChange = (e) => {
         setLogin({...login, [e.target.name] : e.target.value})
     }
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const success = await loginUser(login)
         if (success) {
             const token = success.token
-            const decodedToken = jwtDecode(token)
-            localStorage.setItem("token", token)
-            localStorage.setItem("userId", decodedToken.sub)
-            localStorage.setItem("userRpl", decodedToken.roles.join(","))
-            navigate("/login")
+            handleLogin(token)
+            navigate("/", { state: {message : "You have been logged out!"} })
+            alert(
+                "You have been logged in! as " + login.email + "\n"
+            )
             window.location.reload()
         }else {
             setErrorMessage("Invalid email or password")
@@ -41,7 +43,7 @@ const Login = () => {
                 <p className={"alert alert-danger"}>{errorMessage}</p>
             }
             <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit}>
                 <div className={"row mb-3"}>
                     <label htmlFor={"email"} className={"col-sm-2 col-form-label"}>
                         Email
