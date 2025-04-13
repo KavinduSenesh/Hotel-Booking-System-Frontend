@@ -81,7 +81,9 @@ export async function getRoomById(roomId){
 // books a room
 export async function bookRoom(roomId, booking){
     try{
-        const response = await api.post(`/bookings/save/booking/${roomId}`, booking)
+        const response = await api.post(`/bookings/save/booking/${roomId}`, booking, {
+            headers: getHeader()
+        });
         return response.data
     }catch (error){
         if (error.response && error.response.data){
@@ -95,7 +97,9 @@ export async function bookRoom(roomId, booking){
 // gets all bookings from the database
 export async function getAllBookings(){
     try {
-        const result = await api.get("/bookings/get/all-bookings")
+        const result = await api.get("/bookings/get/all-bookings", {
+            headers: getHeader()
+        });
         console.log("Bookings : ", result.data)
         return result.data
     }catch (error){
@@ -140,7 +144,7 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType){
 // register a new user
 export async function registerUser(registrationData){
     try {
-        const response = await api.post("auth/register", registrationData)
+        const response = await api.post("/auth/register", registrationData)
         return response.data
     }catch (error){
         if (error.response && error.response.data){
@@ -205,7 +209,7 @@ export async function getUser(userId, token){
 // get bookings by user id
 export async function getBookingsByUserId(userId, token){
     try{
-        const response = await api.get(`/get/user/${userId}`,{
+        const response = await api.get(`/bookings/get/${userId}`,{
             headers: getHeader()
         })
         return response.data
