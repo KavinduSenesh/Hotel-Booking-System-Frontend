@@ -122,12 +122,12 @@ const ExistingRooms = () => {
                                     <td>{room.roomPrice}</td>
                                     {/*<td className="gap-2"></td>*/}
                                     <td className={"gap-2"}>
-                                        <Link to={`/edit-rooms/${room.id}`}>
-                                            <span className={"btn btn-info"}> <FaEye/> </span>
-                                            <span className={"btn btn-warning"}> <FaEdit/> </span>
+                                        <Link to={`/edit-rooms/${room.id}`} >
+                                            <span className={"btn btn-info me-2"} style={{ padding: "5px" }}> <FaEye/> </span>
+                                            <span className={"btn btn-warning"} > <FaEdit/> </span>
                                         </Link>
                                         <button
-                                            className="btn btn-danger btn-sm"
+                                            className="btn btn-danger btn-sm ms-2"
                                             onClick={() => handleDelete(room.id)}
                                         >
                                             <FaTrashAlt/>

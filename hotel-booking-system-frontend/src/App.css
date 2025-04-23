@@ -349,3 +349,8 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
     opacity: 1;
     transform: translateY(0);
 }
+
+.navbar-brand:hover .hotel-color {
+    color: #a94d7b; /* your theme color or a brighter shade */
+}
+
