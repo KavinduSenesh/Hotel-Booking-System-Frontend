@@ -92,7 +92,7 @@ const Profile = () => {
                                                 src="https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"
                                                 alt="Profile"
                                                 className="rounded-circle"
-                                                style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                                                style={{ width: "150px", height: "150px", objectFit: "cover", padding: "9px" }}
                                             />
                                         </div>
                                     </div>
