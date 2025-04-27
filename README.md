@@ -1,6 +1,7 @@
 # Hotel Booking System - Frontend
 
 ## Description
+
 The **Hotel Booking System - Frontend** is a user-friendly, responsive web application developed with **HTML**, **CSS**, **JavaScript**, and **React** for managing hotel bookings. This application allows users to search for available rooms, view hotel details, make reservations, and manage their bookings, providing an intuitive interface for users to book hotel rooms effortlessly.
 
 ## Features
