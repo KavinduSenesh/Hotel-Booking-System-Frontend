@@ -13,10 +13,14 @@ const AuthProvider = ({ children }) => {
     const handleLogin = (token) => {
         const decodedUser = jwtDecode(token);
         localStorage.setItem("userId", decodedUser.sub);
-        localStorage.setItem("userRole", decodedUser.roles);
+
+        // 💡 Store roles as JSON string (so we can parse it later safely)
+        localStorage.setItem("userRole", JSON.stringify(decodedUser.roles));
         localStorage.setItem("token", token);
-        setUser(decodedUser)
-    }
+
+        setUser(decodedUser);
+    };
+
 
     const handleLogout = () => {
         localStorage.removeItem("userId");

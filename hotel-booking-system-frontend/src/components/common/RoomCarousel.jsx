@@ -30,7 +30,7 @@ const RoomCarousel = () => {
 
     return (
         <section className={"bg-light mb-5 mt-5 shadow"}>
-            <Link to={"/browse-all-rooms"} className={"hotel-color text-center"}>
+            <Link to={"/browse-all-rooms"} className={"hotel-color text-center text-decoration-none px-2"}>
                 Browse all rooms
             </Link>
 

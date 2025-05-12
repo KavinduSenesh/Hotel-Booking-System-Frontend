@@ -52,7 +52,9 @@ export async function getAllRooms(){
 // deletes a room from the database
 export async function deleteRoom(roomId){
     try{
-        const result = await api.delete(`/rooms/delete/room/${roomId}`)
+        const result = await api.delete(`/rooms/delete/room/${roomId}`, {
+            headers: getHeader()
+        })
         return result.data
     }catch(error){
         throw new Error(`Error while deleting the room ${error}`)
@@ -65,7 +67,9 @@ export async function updateRoom(roomId, roomData){
     formData.append("roomType", roomData.roomType)
     formData.append("roomPrice", roomData.roomPrice)
     formData.append("photo", roomData.photo)
-    const response = await api.put(`/rooms/update/room/${roomId}`, formData)
+    const response = await api.put(`/rooms/update/room/${roomId}`, formData, {
+        headers: getHeader()
+    })
     return response
 }
 

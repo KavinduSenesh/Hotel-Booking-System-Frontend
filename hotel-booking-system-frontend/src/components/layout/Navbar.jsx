@@ -10,8 +10,18 @@ const Navbar = () => {
         setShowAccount(!showAccount)
     }
 
-    const isLoggedIn = localStorage.getItem("token")
-    const userRole = localStorage.getItem("userRole")
+    const isLoggedIn = !!localStorage.getItem("token");
+
+    let userRole = [];
+    try {
+        userRole = JSON.parse(localStorage.getItem("userRole") || "[]");
+    } catch (error) {
+        console.error("Error parsing userRole:", error);
+    }
+
+
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("userRole:", userRole);
 
     return(
         <nav className={"navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top"}>
@@ -40,11 +50,12 @@ const Navbar = () => {
 
                         {isLoggedIn && userRole.includes("ROLE_ADMIN") && (
                             <li className="nav-item">
-                                <NavLink className="nav-link" aria-current="page" to={"/admin"}>
+                                <NavLink className="nav-link" to="/admin">
                                     Admin
                                 </NavLink>
                             </li>
                         )}
+
                     </ul>
 
                     <ul className={"d-flex navbar-nav"}>
